@@ -6,6 +6,7 @@ import {validateUserInfo} from '../../assets/utils/functionsUtils';
 import PasswordStrengthMeter from '../../Components/PasswordStrengthMeter/index.jsx';
 import {toast} from 'react-toastify';
 import styles from './SignUp.module.css';
+import {ACTIONS, initialState, signUpReducer} from './signUpReducer.js';
 
 export default function SignUp() {
    const [isShowing, setIsShowing] = useState(false);
@@ -15,7 +16,8 @@ export default function SignUp() {
       email: '',
       password: ''
    });
-
+   const [state, dispatch] = useReducer(signUpReducer, initialState);
+   console.log(state);
 
    const togglePasswordIsShowing = () => {
       setIsShowing(!isShowing);
