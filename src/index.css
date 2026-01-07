@@ -18,7 +18,7 @@
 }
 
 *:focus {
-  outline: none;
+  outline: none !important;
 }
 
 :root {
@@ -127,6 +127,21 @@ small {
 
 input, button, select, textarea {
   font-family: 'Mulish', sans-serif;
+}
+
+.hide__show__button.btn.btn-btn {
+  padding: 0 0.2em;
+  font-family: 'Source Code Pro', monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  border: 1px solid black;
+
+}
+
+.hide__show__button.btn.btn-btn:focus,
+.hide__show__button.btn.btn-btn:active {
+  outline: none;
 }
 
 ul {

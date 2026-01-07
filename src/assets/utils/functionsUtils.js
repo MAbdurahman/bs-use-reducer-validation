@@ -27,37 +27,63 @@ export function validateUserInfo(userName, fullName, email, password ) {
    let email_trimmed = email.trim();
    let password_trimmed = password.trim();
 
-   const username_pattern = /^[a-z][a-z0-9]{4,16}$/;
+   const username_pattern = /^(?=[a-z])(?=.*\d)[a-z0-9]{4,16}$/;
+   const username_start_pattern = /^(?=.*[a-z])/g;
+   const username_allowable_pattern = /^[a-z0-9]*$/;
+   const username_digit_pattern = /^(?=.*\d{1,})/g;
+
    const fullname_pattern = /^([a-zA-Z-]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{1,}\s?([a-zA-Z]{1,})?)(,? (?:[JS]r\.?|II|III|IV))?$/g;
    const email_pattern = /^[!A-Z0-9#$&?*^~_%+-]+(\.[A-Z0-9!_%+-^]+)*?@[A-Z0-9-]+([A-Z0-9.-])*\.[A-Z]{2,}$/i;
+
    const password_pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-+_!@#$%^&*?]).{8,}$/i;
    const lowercase_pattern = /^(?=.*[a-z])/g;
    const uppercase_pattern = /^(?=.*[A-Z])/g;
    const digit_pattern = /^(?=.*\d{1,})/g;
    const special_pattern = /(?=.*[-+_!@#$%^&*?])/g;
 
-
+   /************************* username conditional statements *************************/
    if (username_trimmed.length === 0) {
       return {isValid: false, error: 'Username is required!'};
+
+   } else if (!username_trimmed.match(username_start_pattern)) {
+      return {isValid: false, error: 'Username must start with a lowercase letter!'};
+
+   } else if (!username_trimmed.match(username_allowable_pattern)) {
+      return {isValid: false, error: 'Username must contain only lowercase letters and numbers!'};
+
+   } else if (!username_trimmed.match(username_digit_pattern)) {
+      return {isValid: false, error: 'Username must contain at least one number!'};
+
+   } else {
+      if (!username_trimmed.match(username_pattern)) {
+         return {isValid: false, error: 'Username must be lowercase letters amd numbers, and between 4 and 16 characters!'};
+
+      }
    }
 
-   if (!username_trimmed.match(username_pattern)) {
-      return {isValid: false, error: 'Username must start with a lowercase letter, only contain lowercase letters and numbers, and be between 4 and 16 characters long!'};
-   }
+   /************************* fullname conditional statements *************************/
 
    if (fullname_trimmed.length === 0) {
       return {isValid: false, error: 'First and last name are required!'};
+
+   } else {
+      if (!fullname_trimmed.match(fullname_pattern)) {
+         return {isValid: false, error: 'Enter a valid first and last name!'};
+      }
    }
-   if (!fullname_trimmed.match(fullname_pattern)) {
-      return {isValid: false, error: 'Enter a valid first and last name!'};
-   }
+
+   /************************* email conditional statements *************************/
 
    if (email_trimmed.length === 0) {
       return {isValid: false, error: 'Email is required!'};
+
+   } else {
+      if (!email_trimmed.match(email_pattern)) {
+         return {isValid: false, error: 'Enter a valid email!'};
+      }
    }
-   if (!email_trimmed.match(email_pattern)) {
-      return {isValid: false, error: 'Enter a valid email!'};
-   }
+
+   /************************* password conditional statements *************************/
 
    if (password_trimmed.length === 0) {
       return {isValid: false, error: 'Password is required!'};
@@ -96,10 +122,13 @@ export function validateEmailAndPassword(email, password) {
 
    if (email_trimmed.length === 0) {
       return {isValid: false, error: 'Email is required!'};
+
+   } else {
+      if (!email_trimmed.match(email_pattern)) {
+         return {isValid: false, error: 'Enter a valid email!'};
+      }
    }
-   if (!email_trimmed.match(email_pattern)) {
-      return {isValid: false, error: 'Enter a valid email!'};
-   }
+
 
    if (password_trimmed.length === 0) {
       return {isValid: false, error: 'Password is required!'};

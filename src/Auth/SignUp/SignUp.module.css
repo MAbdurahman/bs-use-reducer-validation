@@ -1,0 +1,132 @@
+.sign__up {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 320px;
+   width: 512px;
+   height: fit-content;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color: hsl(211.2, 0%, 98%);
+   border-radius: 3px;
+   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.185);
+}
+
+@media screen and (max-width: 520px) {
+   .sign__up {
+      width: 390px !important;
+   }
+}
+
+@media screen and (max-width: 390px) {
+   .sign__up {
+      width: 320px !important;
+   }
+}
+
+.sign__up__title {
+   margin-top: 1em;
+   margin-bottom: 0;
+   font-weight: 700;
+   text-align: center;
+   text-transform: uppercase;
+   color: hsl(211.2, 0%, 18%);
+}
+
+.sign__up__form {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   gap: 0.75em;
+   padding: 2em;
+}
+
+.sign__up__form__group {
+   display: flex;
+   flex-direction: column;
+   gap: 0.20em;
+   font-size: 1.025rem;
+}
+
+.sign__up__form__group label {
+   font-weight: 600;
+   color: hsl(211.2, 0%, 28%);
+}
+
+.sign__up__form__group input {
+   padding: 0.5em 0.75em 0.5em 0.5em;
+   border-radius: 3px;
+   border: 1px solid #ccc;
+}
+
+.sign__up__form__passwordGroup {
+   position: relative;
+   width: 100%;
+   height: 42px;
+   display: flex;
+   justify-content: space-between;
+   padding: 0.20em 1.75em 0.20em 0.20em;
+   background: white;
+   border-radius: 3px;
+   border: 1px solid #ccc;
+}
+
+.sign__up__form__passwordGroup input {
+   background-color: transparent;
+   border: none
+}
+
+.sign__up__form__passwordGroup__icon {
+   cursor: pointer;
+}
+
+.sign__up__form__button {
+   margin-top: 1em;
+   padding-top: 0.75em;
+   padding-bottom: 0.75em;
+   font-weight: 800;
+   text-transform: uppercase;
+   background-color: hsl(211.2, 0%, 10%) !important;
+   color: hsl(211.2, 0%, 98%) !important;
+   border: 2px solid hsl(211.2, 0%, 10%) !important;
+   border-radius: 3px;
+   transition: all 0.2s ease-in-out;
+
+}
+
+.sign__up__form__button:hover,
+.sign__in__form__button:focus,
+.sign__up__form__button:active,
+.sign__up__form__button.active {
+   background-color: hsl(211.2, 0%, 28%) !important;
+   color: hsl(211.2, 0%, 78%) !important;
+   cursor: pointer;
+}
+
+.sign__up__form__text {
+   text-align: right;
+   color: hsl(211.2, 0%, 18%) !important;
+}
+
+.sign__up__form__text__link a {
+   color: hsl(211.2, 0%, 28%) !important;
+   font-weight: 800;
+   transition: all 0.2s ease-in-out;
+}
+
+.sign__up__form__text__link a:hover,
+.sign__up__form__text__link a:focus,
+.sign__up__form__text__link a:active,
+.sign__up__form__text__link a.active {
+   color: dodgerblue !important;
+   cursor: pointer;
+}
+
+.hide__label {
+   /*visibility: hidden;*/
+
+}
