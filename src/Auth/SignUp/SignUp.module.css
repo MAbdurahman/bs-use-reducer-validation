@@ -23,6 +23,12 @@
 
 @media screen and (max-width: 390px) {
    .sign__up {
+      width: 360px !important;
+   }
+}
+
+@media screen and (max-width: 360px) {
+   .sign__up {
       width: 320px !important;
    }
 }
