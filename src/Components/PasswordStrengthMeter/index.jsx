@@ -24,10 +24,10 @@ const PasswordCriteria = ({password}) => {
                {item.func ? (
                   <Check className={styles.criteria__success}/>
                ) : (
-                  <X className={styles.criteria__label}/>
+                  <X className={styles.criteria__neutral}/>
                )}
                <span
-                  className={item.func ? `${styles.text__success__400}` : `${styles.text__alert__400}`}>{item.label}</span>
+                  className={item.func ? `${styles.text__success__400}` : `${styles.text__neutral__400}`}>{item.label}</span>
             </div>
          ))}
       </div>
@@ -40,12 +40,12 @@ export default function PasswordStrengthMeter({password}) {
    const digit_pattern = /^(?=.*\d{1,})/g;
    const special_pattern = /(?=.*[-+_!@#$%^&*?])/g;
 
-   const getStrength = (pass) => {
+   const getStrength = (password) => {
       let strength = 0;
-      if (pass.length >= 8) strength++;
-      if (pass.match(lowercase_pattern) && pass.match(uppercase_pattern)) strength++;
-      if (pass.match(digit_pattern)) strength++;
-      if (pass.match(special_pattern)) strength++;
+      if (password.length >= 8) strength++;
+      if (password.match(lowercase_pattern) && password.match(uppercase_pattern)) strength++;
+      if (password.match(digit_pattern)) strength++;
+      if (password.match(special_pattern)) strength++;
       return strength;
    };
    const strength = getStrength(password);
