@@ -10,22 +10,10 @@ import {ACTIONS, initialState, signUpReducer} from './signUpReducer.js';
 
 export default function SignUp() {
    const [isShowing, setIsShowing] = useState(false);
-   const [formData, setFormData] = useState({
-      username: '',
-      fullname: '',
-      email: '',
-      password: ''
-   });
    const [state, dispatch] = useReducer(signUpReducer, initialState);
-   console.log(state);
 
    const togglePasswordIsShowing = () => {
       setIsShowing(!isShowing);
-   };
-
-   const handleChange = (e) => {
-      const {name, value} = e.target;
-      setFormData({...formData, [name]: value});
    };
 
    const handleSubmit = (e) => {
@@ -34,7 +22,7 @@ export default function SignUp() {
       const {
          isValid,
          error
-      } = validateUserInfo(formData.username, formData.fullname, formData.email, formData.password);
+      } = validateUserInfo(state.username.value, state.fullname.value, state.email.value, state.password.value);
       try {
          if (!isValid) {
             toast.error(error);
@@ -58,22 +46,22 @@ export default function SignUp() {
                   <form action='' className={styles.sign__up__form} onSubmit={handleSubmit}>
                      <div className={styles.sign__up__form__group}>
                         <label className={styles.hide__label} htmlFor='username'>Username</label>
-                        <input type='text' id='username' name='username' placeholder='Enter username' onChange={handleChange}/>
+                        <input type='text' id='username' name='username' placeholder='Enter username' onChange={(e) => dispatch({ type: ACTIONS.USERNAME_CHANGE, payload: e.target.value })}/>
                      </div>
                      <div className={styles.sign__up__form__group}>
                         <label className={styles.hide__label} htmlFor='fullname'>Full name</label>
-                        <input type='text' id='fullname' name='fullname' placeholder='Enter first and last name' onChange={handleChange}/>
+                        <input type='text' id='fullname' name='fullname' placeholder='Enter first and last name' onChange={(e) => dispatch({ type: ACTIONS.FULLNAME_CHANGE, payload: e.target.value })}/>
                      </div>
                      <div className={styles.sign__up__form__group}>
                         <label className={styles.hide__label} htmlFor='email' id='email'>Email</label>
-                        <input type='text' id='email' name='email' placeholder='email@example.com' onChange={handleChange}/>
+                        <input type='text' id='email' name='email' placeholder='email@example.com' onChange={(e) => dispatch({ type: ACTIONS.EMAIL_CHANGE, payload: e.target.value })}/>
                      </div>
                      <div className={styles.sign__up__form__group}>
                         <label className={styles.hide__label} htmlFor='password' id='password'>Password</label>
                         <div className={styles.sign__up__form__passwordGroup}>
                            <input type={isShowing ? 'text' : 'password'} id='password'
                                   name='password' placeholder='Enter password'
-                                  onChange={handleChange}/>
+                                  onChange={e => dispatch({ type: ACTIONS.PASSWORD_CHANGE, payload: e.target.value })}/>
                            {
                               isShowing ? (
                                  <EyeOutlined className={styles.sign__up__form__passwordGroup__icon}
@@ -86,12 +74,11 @@ export default function SignUp() {
                            }
                         </div>
                      </div>
-                     <PasswordStrengthMeter password={formData.password}/>
+                     <PasswordStrengthMeter password={state.password.value}/>
                      <button type='submit' className={styles.sign__up__form__button}>Sign Up</button>
                      <p className={styles.sign__up__form__text}>Already have an account? <span className={styles.sign__up__form__text__link}><Link to='/sign-in'>Sign In</Link></span></p>
                   </form>
                </section>
-
             </Col>
          </Row>
       </Container>

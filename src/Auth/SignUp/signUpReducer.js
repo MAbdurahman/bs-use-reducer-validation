@@ -9,16 +9,11 @@ export const ACTIONS = {
 export const initialState = {
    username: {
       value: '',
-      validations: {
-         hasStartPattern: false,
-         hasAllowablePattern: false,
-         hasDigitPattern: false,
-         hasUsernamePattern: false
-      }
+      isValid: false
    },
    fullname: {
       value: '',
-      isValid: false,
+      isValid: false
    },
    email: {
       value: '',
@@ -26,14 +21,9 @@ export const initialState = {
    },
    password: {
       value: '',
-      validations: {
-         hasLowercase: false,
-         hasUppercase: false,
-         hasDigit: false,
-         hasSpecialCharacter: false,
-         hasPasswordPattern: false
-      }
+      isValid: false
    }
+
 }
 
 const username_pattern = /^(?=[a-z])(?=.*\d)[a-z0-9]{4,16}$/;
@@ -57,17 +47,13 @@ export const signUpReducer = (state = initialState, action) => {
    switch (type) {
     case ACTIONS.USERNAME_CHANGE:
        const username_trimmed = payload.trim();
-       const hasStartPattern = username_trimmed.match(username_start_pattern);
-       const hasAllowablePattern = username_trimmed.match(username_allowable_pattern);
-       const hasDigitPattern = username_trimmed.match(username_digit_pattern);
-       const hasUsernamePattern = username_trimmed.match(username_pattern);
-
+       const isUsernameValid = username_trimmed.match(username_pattern);
        return {
           ...state,
-          hasStartPattern,
-          hasAllowablePattern,
-          hasDigitPattern,
-          hasUsernamePattern
+          username: {
+             value: username_trimmed,
+             isValid: isUsernameValid
+          }
        }
 
       case ACTIONS.FULLNAME_CHANGE:
@@ -91,26 +77,20 @@ export const signUpReducer = (state = initialState, action) => {
                isValid: isEmailValid
             }
          };
+
       case ACTIONS.PASSWORD_CHANGE:
          const password_trimmed = payload.trim();
-         const hasLowercase = password_trimmed.match(lowercase_pattern);
-         const hasUppercase = password_trimmed.match(uppercase_pattern);
-         const hasDigit = password_trimmed.match(digit_pattern);
-         const hasSpecialCharacter = password_trimmed.match(special_pattern);
-         const hasPasswordPattern = password_trimmed.match(password_pattern);
-
+         const isPasswordValid = password_trimmed.match(password_pattern);
          return {
             ...state,
-            hasLowercase,
-            hasUppercase,
-            hasDigit,
-            hasSpecialCharacter,
-            hasPasswordPattern
+            password: {
+               value: password_trimmed,
+               isValid: isPasswordValid
+            }
          };
 
     default:
        return state;
 
    }
-
 }

@@ -4,7 +4,7 @@ export const ACTIONS = {
    PASSWORD_CHANGE: "PASSWORD_CHANGE",
 }
 
-export const initialState = {
+/*export const initialState = {
    email: {
       value: '',
       isValid: false
@@ -19,15 +19,25 @@ export const initialState = {
          hasPasswordPattern: false
       }
    }
+}*/
+
+export const initialState = {
+   email: {
+      value: '',
+      isValid: false
+   },
+   password: {
+      value: '',
+      isValid: false
+   }
 }
 
 const email_pattern = /^[!A-Z0-9#$&?*^~_%+-]+(\.[A-Z0-9!_%+-^]+)*?@[A-Z0-9-]+([A-Z0-9.-])*\.[A-Z]{2,}$/i;
-
 const password_pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-+_!@#$%^&*?]).{8,32}$/i;
-const lowercase_pattern = /^(?=.*[a-z])/g;
+/*const lowercase_pattern = /^(?=.*[a-z])/g;
 const uppercase_pattern = /^(?=.*[A-Z])/g;
 const digit_pattern = /^(?=.*\d{1,})/g;
-const special_pattern = /(?=.*[-+_!@#$%^&*?])/g;
+const special_pattern = /(?=.*[-+_!@#$%^&*?])/g;*/
 
 
 export const signInReducer = (state = initialState, action) => {
@@ -46,19 +56,13 @@ export const signInReducer = (state = initialState, action) => {
          };
       case ACTIONS.PASSWORD_CHANGE:
          const password_trimmed = payload.trim();
-         const hasLowercase = password_trimmed.match(lowercase_pattern);
-         const hasUppercase = password_trimmed.match(uppercase_pattern);
-         const hasDigit = password_trimmed.match(digit_pattern);
-         const hasSpecialCharacter = password_trimmed.match(special_pattern);
-         const hasPasswordPattern = password_trimmed.match(password_pattern);
-
+         const isPasswordValid = password_trimmed.match(password_pattern);
          return {
             ...state,
-            hasLowercase,
-            hasUppercase,
-            hasDigit,
-            hasSpecialCharacter,
-            hasPasswordPattern
+            password: {
+               value: password_trimmed,
+               isValid: isPasswordValid
+            }
          };
 
       default:

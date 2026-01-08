@@ -13,25 +13,14 @@ export default function SignIn() {
    const [isShowing, setIsShowing] = useState(false);
 
    const [state, dispatch] = useReducer(signInReducer, initialState);
-   console.log(state);
-   const [formData, setFormData] = useState({
-      email: '',
-      password: ''
-   });
 
    const togglePasswordIsShowing = () => {
       setIsShowing(!isShowing);
    };
 
-   const handleChange = (e) => {
-      const {name, value} = e.target;
-      setFormData({...formData, [name]: value});
-   };
-
    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(formData);
-      const {isValid, error} = validateEmailAndPassword(formData.email, formData.password);
+      const {isValid, error} = validateEmailAndPassword(state.email.value, state.password.value);
 
       try {
          if (!isValid) {
@@ -57,14 +46,14 @@ export default function SignIn() {
                      <div className={styles.sign__in__form__group}>
                         <label className={styles.hide__label} htmlFor='email'>Email</label>
                         <input type='text' id='email' name='email'
-                               placeholder='email@example.com' onChange={handleChange}/>
+                               placeholder='email@example.com' onChange={(e) => dispatch({ type: ACTIONS.EMAIL_CHANGE, payload: e.target.value })}/>
                      </div>
                      <div className={styles.sign__in__form__group}>
                         <label className={styles.hide__label} htmlFor='password'>Password</label>
                         <div className={styles.sign__in__form__passwordGroup}>
                            <input type={isShowing ? 'text' : 'password'} id='password'
                                   name='password' placeholder='Enter password'
-                                  onChange={handleChange}/>
+                                  onChange={e => dispatch({ type: ACTIONS.PASSWORD_CHANGE, payload: e.target.value })}/>
                            {
                               isShowing ? (
                                  <EyeOutlined className={styles.sign__in__form__passwordGroup__icon}
