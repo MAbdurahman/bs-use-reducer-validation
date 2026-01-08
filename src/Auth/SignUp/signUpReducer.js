@@ -27,19 +27,9 @@ export const initialState = {
 }
 
 const username_pattern = /^(?=[a-z])(?=.*\d)[a-z0-9]{4,16}$/;
-const username_start_pattern = /^(?=.*[a-z])/g;
-const username_allowable_pattern = /^[a-z0-9]*$/;
-const username_digit_pattern = /^(?=.*\d{1,})/g;
-
 const fullname_pattern = /^([a-zA-Z-]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{1,}\s?([a-zA-Z]{1,})?)(,? (?:[JS]r\.?|II|III|IV))?$/g;
 const email_pattern = /^[!A-Z0-9#$&?*^~_%+-]+(\.[A-Z0-9!_%+-^]+)*?@[A-Z0-9-]+([A-Z0-9.-])*\.[A-Z]{2,}$/i;
-
 const password_pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-+_!@#$%^&*?]).{8,32}$/i;
-const lowercase_pattern = /^(?=.*[a-z])/g;
-const uppercase_pattern = /^(?=.*[A-Z])/g;
-const digit_pattern = /^(?=.*\d{1,})/g;
-const special_pattern = /(?=.*[-+_!@#$%^&*?])/g;
-
 
 export const signUpReducer = (state = initialState, action) => {
    const {type, payload} = action;

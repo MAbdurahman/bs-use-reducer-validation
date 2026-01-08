@@ -2,7 +2,7 @@ import {useReducer, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Col, Container, Row} from 'react-bootstrap';
 import {EyeInvisibleOutlined, EyeOutlined} from '@ant-design/icons';
-import {validateUserInfo} from '../../assets/utils/functionsUtils';
+import {validateUserInfo, getFirstName} from '../../assets/utils/functionsUtils';
 import PasswordStrengthMeter from '../../Components/PasswordStrengthMeter/index.jsx';
 import {toast} from 'react-toastify';
 import styles from './SignUp.module.css';
@@ -28,8 +28,8 @@ export default function SignUp() {
             toast.error(error);
             return;
          }
-
-         toast.success('User successfully signed up!');
+         const firstName = getFirstName(state.fullname.value);
+         toast.success(`${firstName} successfully signed up!`);
 
       } catch (err) {
          toast.error(err.message);

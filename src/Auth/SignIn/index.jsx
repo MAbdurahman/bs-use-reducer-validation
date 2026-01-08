@@ -3,16 +3,14 @@ import {Link} from 'react-router-dom';
 import {Col, Container, Row} from 'react-bootstrap';
 import {EyeInvisibleOutlined, EyeOutlined} from '@ant-design/icons';
 import {validateEmailAndPassword} from '../../assets/utils/functionsUtils';
-import PasswordStrengthMeter from '../../Components/PasswordStrengthMeter/index.jsx';
 import {toast} from 'react-toastify';
 import styles from './SignIn.module.css';
 import {ACTIONS, initialState, signInReducer} from './signInReducer.js';
 
 
 export default function SignIn() {
-   const [isShowing, setIsShowing] = useState(false);
-
    const [state, dispatch] = useReducer(signInReducer, initialState);
+   const [isShowing, setIsShowing] = useState(false);
 
    const togglePasswordIsShowing = () => {
       setIsShowing(!isShowing);
@@ -27,6 +25,7 @@ export default function SignIn() {
             toast.error(error);
             return;
          }
+
          toast.success('User successfully signed in!');
 
       } catch(err) {
