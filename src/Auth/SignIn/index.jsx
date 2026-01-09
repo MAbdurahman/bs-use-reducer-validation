@@ -6,11 +6,13 @@ import {validateEmailAndPassword} from '../../assets/utils/functionsUtils';
 import {toast} from 'react-toastify';
 import styles from './SignIn.module.css';
 import {ACTIONS, initialState, signInReducer} from './signInReducer.js';
+import {useNavigate} from 'react-router-dom';
 
 
 export default function SignIn() {
    const [state, dispatch] = useReducer(signInReducer, initialState);
    const [isShowing, setIsShowing] = useState(false);
+   const navigate = useNavigate();
 
    const togglePasswordIsShowing = () => {
       setIsShowing(!isShowing);
@@ -27,6 +29,10 @@ export default function SignIn() {
          }
 
          toast.success('User successfully signed in!');
+         setTimeout(()=> {
+            dispatch({type: ACTIONS.RESET_FORM});
+            navigate('/home');
+         }, 3000);
 
       } catch(err) {
          toast.error(err.message);

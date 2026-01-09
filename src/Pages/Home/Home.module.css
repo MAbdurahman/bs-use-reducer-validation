@@ -1,0 +1,40 @@
+
+.home {
+   position: relative;
+   width: 100%;
+   margin: 0;
+   text-align: center;
+}
+
+.home__header {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   background-color: #282c34;
+   padding: 20px;
+   color: white;
+}
+
+.home__header__nav {
+   list-style-type: none;
+   padding: 0;
+}
+
+.home__header__nav__li {
+   display: inline;
+   margin: 0 15px;
+}
+
+.home__header__nav li a {
+   font-weight: 600;
+   font-size: 1.2rem;
+   color: white;
+}
+
+.home__header__nav li a:hover {
+   text-decoration: underline;
+}
+.home__header__nav li a.active {
+   text-decoration: underline;
+}
