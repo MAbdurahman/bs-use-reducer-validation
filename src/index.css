@@ -55,6 +55,18 @@ html {
   font-family: 'Mulish', sans-serif;
 }
 
+@media screen and (max-width: 520px) {
+  html {
+    font-size: 83.333%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  html {
+    font-size: 75%;
+  }
+}
+
 body {
   position: relative;
   width: 100%;

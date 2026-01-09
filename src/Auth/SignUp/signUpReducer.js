@@ -4,6 +4,7 @@ export const ACTIONS = {
    FULLNAME_CHANGE: "FULLNAME_CHANGE",
    EMAIL_CHANGE: "EMAIL_CHANGE",
    PASSWORD_CHANGE: "PASSWORD_CHANGE",
+   RESET_FORM: "RESET_FORM"
 }
 
 export const initialState = {
@@ -78,6 +79,9 @@ export const signUpReducer = (state = initialState, action) => {
                isValid: isPasswordValid
             }
          };
+
+      case ACTIONS.RESET_FORM:
+         return initialState;
 
     default:
        return state;

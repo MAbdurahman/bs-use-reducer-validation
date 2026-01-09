@@ -7,10 +7,12 @@ import PasswordStrengthMeter from '../../Components/PasswordStrengthMeter/index.
 import {toast} from 'react-toastify';
 import styles from './SignUp.module.css';
 import {ACTIONS, initialState, signUpReducer} from './signUpReducer.js';
+import {useNavigate} from 'react-router-dom';
 
 export default function SignUp() {
    const [isShowing, setIsShowing] = useState(false);
    const [state, dispatch] = useReducer(signUpReducer, initialState);
+   const navigate = useNavigate();
 
    const togglePasswordIsShowing = () => {
       setIsShowing(!isShowing);
@@ -27,6 +29,12 @@ export default function SignUp() {
          }
          const firstName = getFirstName(state.fullname.value);
          toast.success(`${firstName} successfully signed up!`);
+
+         setTimeout(()=> {
+            dispatch({type: ACTIONS.RESET_FORM});
+            navigate('/sign-in');
+         }, 3000);
+
 
       } catch (err) {
          toast.error(err.message);
