@@ -47,3 +47,5 @@ or
 ```shell
 yarn build
 ```
+
+![Image](https://github.com/user-attachments/assets/6e924575-98b4-4b2b-9b0c-b2c46c42bfbb)

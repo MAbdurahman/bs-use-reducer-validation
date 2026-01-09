@@ -19,10 +19,7 @@ export default function SignUp() {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      const {
-         isValid,
-         error
-      } = validateUserInfo(state.username.value, state.fullname.value, state.email.value, state.password.value);
+      const {isValid, error} = validateUserInfo(state.username.value, state.fullname.value, state.email.value, state.password.value);
       try {
          if (!isValid) {
             toast.error(error);

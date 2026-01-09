@@ -1,4 +1,4 @@
-import React, {Fragment, useReducer} from 'react';
+import React, {Fragment} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import SignUp from '../Auth/SignUp/index.jsx';
 import SignIn from '../Auth/SignIn/index.jsx';
