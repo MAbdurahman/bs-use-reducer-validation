@@ -69,6 +69,11 @@
    border: 1px solid #ccc;
 }
 
+.sign__up__form__group input:focus {
+   outline: none;
+   border: 2px solid hsl(211.2, 0%, 28%);
+}
+
 .sign__up__form__passwordGroup {
    position: relative;
    width: 100%;
@@ -82,8 +87,18 @@
 }
 
 .sign__up__form__passwordGroup input {
+   width: 100%;
    background-color: transparent;
    border: none
+}
+
+.sign__up__form__passwordGroup input:focus {
+   outline: none;
+   border: none;
+}
+
+.sign__up__form__passwordGroup:has(input:focus) {
+   border: 2px solid hsl(211.2, 0%, 28%);
 }
 
 .sign__up__form__passwordGroup__icon {

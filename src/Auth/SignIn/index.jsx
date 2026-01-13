@@ -48,14 +48,14 @@ export default function SignIn() {
                <section className={styles.sign__in}>
                   <h4 className={styles.sign__in__title}>Sign In</h4>
                   <form action='' onSubmit={handleSubmit} className={styles.sign__in__form}>
-                     <div className={styles.sign__in__form__group}>
+                     <div className={styles.sign__in__form__group} tabIndex={0} >
                         <label className={styles.hide__label} htmlFor='email'>Email</label>
                         <input type='text' id='email' name='email'
                                placeholder='email@example.com' onChange={(e) => dispatch({ type: ACTIONS.EMAIL_CHANGE, payload: e.target.value })}/>
                      </div>
                      <div className={styles.sign__in__form__group}>
                         <label className={styles.hide__label} htmlFor='password'>Password</label>
-                        <div className={styles.sign__in__form__passwordGroup}>
+                        <div className={styles.sign__in__form__passwordGroup} tabIndex={1}>
                            <input type={isShowing ? 'text' : 'password'} id='password'
                                   name='password' placeholder='Enter password'
                                   onChange={e => dispatch({ type: ACTIONS.PASSWORD_CHANGE, payload: e.target.value })}/>
