@@ -4,7 +4,7 @@
 <p>
 bs-use-reducer-validation utilizes React, UseReducer, UseState, and Bootstrap that 
 set up a simple sign-up form with validation. The forms use custom regex expressions 
-to ensure that the user input is valid. Also,it uses Ant Design Icons for the password
+to ensure that the user input is valid. Also, it uses Ant Design Icons for the password
 visibility toggle.
 </p>
 
@@ -47,5 +47,6 @@ or
 ```shell
 yarn build
 ```
+### [Live preview](https://bs-use-reducer-validation.netlify.app/)
 
 ![Image](https://github.com/user-attachments/assets/6e924575-98b4-4b2b-9b0c-b2c46c42bfbb)
